@@ -24,18 +24,18 @@ class Settings(BaseSettings):
     API_V1_PREFIX: str = "/api"
 
     # --- Security / JWT ---
-    SECRET_KEY: str = Field(..., description="Used to sign JWTs. Must be set in production.")
+    SECRET_KEY: str = Field(default="codecity-secret-key-super-secure-change-in-production-2026", description="Used to sign JWTs. Must be set in production.")
     JWT_ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24  # 24h
     REFRESH_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 30  # 30d
 
     # --- Database ---
     DATABASE_URL: str = Field(
-        default="postgresql+asyncpg://codecity:codecity@localhost:5432/codecity",
+        default="sqlite+aiosqlite:///./codecity.db",
         description="Async SQLAlchemy connection string.",
     )
     DATABASE_SYNC_URL: str = Field(
-        default="postgresql+psycopg2://codecity:codecity@localhost:5432/codecity",
+        default="sqlite:///./codecity.db",
         description="Sync connection string, used by Alembic migrations.",
     )
     DB_POOL_SIZE: int = 10

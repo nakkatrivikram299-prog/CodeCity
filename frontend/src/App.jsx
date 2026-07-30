@@ -46,54 +46,19 @@ function OAuthCallback() {
 export default function App() {
   return (
     <AnimatePresence mode="wait">
-      <Suspense fallback={<Loading fullscreen label="Loading CodeCity" />}>
+      <Suspense fallback={<Loading fullscreen label="Loading CodeCity Matrix" />}>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/auth/callback" element={<OAuthCallback />} />
 
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/city"
-            element={
-              <ProtectedRoute>
-                <City />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/profile/:username?"
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/team/:teamId?"
-            element={
-              <ProtectedRoute>
-                <Team />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/settings"
-            element={
-              <ProtectedRoute>
-                <Settings />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/city" element={<City />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/profile/:username?" element={<Profile />} />
+          <Route path="/team/:teamId?" element={<Team />} />
+          <Route path="/settings" element={<Settings />} />
 
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<City />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
